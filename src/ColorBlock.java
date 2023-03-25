@@ -19,4 +19,8 @@ public class ColorBlock extends Block{
         UI.setColor(getColor());
         UI.fillRect(getX(), getY(), getWidth(), getHeight());
     }
+
+    public void erase() {
+        UI.eraseRect(getX(), getY(), getWidth(), getHeight());
+    }
 }
