@@ -9,12 +9,16 @@ public class Main {
     public static void main(String[] args) {
         Game game = new Game();
         setupGUI(game);
-        UI.println("Hi!");
 
-        final double frame_len = 1.0/1.0;
+        final double frame_len = 1000.0 / 30.0;
         while (!game.getDone()) {
+            // Tick player in order to apply gravity and such
+            game.player.tick();
+
             UI.clearGraphics();
+
             game.player.draw();
+
             UI.sleep(frame_len);
         }
     }
