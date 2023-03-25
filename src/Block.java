@@ -73,6 +73,9 @@ public class Block {
         this.height = height;
     }
 
+    public void draw() {}
+
+
     /**
      * Checks if the given point is inside the block
      * @return If the point is inside the block.
@@ -88,27 +91,27 @@ public class Block {
      * Does the right side of this block collide with the other's left side?
      */
     public boolean collideRight(Block other) {
-        return other.isPointInside(getFarX(), getY()) || isPointInside(getFarX(), getFarY());
+        return other.isPointInside(getFarX(), getY()) || other.isPointInside(getFarX(), getFarY());
     }
 
     /**
      * Does the left side of this block collide with the other's right side?
      */
     public boolean collideLeft(Block other) {
-        return other.isPointInside(getX(), getY()) || isPointInside(getX(), getFarY());
+        return other.isPointInside(getX(), getY()) || other.isPointInside(getX(), getFarY());
     }
 
     /**
      * Does the bottom side of this block collide with the other's top side?
      */
     public boolean collideBottom(Block other) {
-        return other.isPointInside(getX(), getFarY()) || isPointInside(getFarX(), getFarY());
+        return other.isPointInside(getX(), getFarY()) || other.isPointInside(getFarX(), getFarY());
     }
 
     /**
      * Does the top side of this block collide with the other's bottom side?
      */
     public boolean collideTop(Block other) {
-        return other.isPointInside(getX(), getY()) || isPointInside(getFarX(), getY());
+        return other.isPointInside(getX(), getY()) || other.isPointInside(getFarX(), getY());
     }
 }
