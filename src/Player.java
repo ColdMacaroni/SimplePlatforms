@@ -5,7 +5,7 @@ import java.awt.*;
  *
  */
 public class Player extends ColorBlock {
-    private static final double stepSize = 4;
+    public static final double stepSize = 4;
     Player(double x, double y) {
         super(x, y, 32, 32, Color.RED);
     }
