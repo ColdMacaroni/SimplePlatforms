@@ -48,6 +48,24 @@ public class Block {
         this.y = y;
     }
 
+    // For getting the points at the other corner
+
+    /**
+     * Gets the Y at the bottom of the block
+     * @return y + height
+     */
+    public double getFarY() {
+        return y + height;
+    }
+
+    /**
+     * Gets the X at the right of the block
+     * @return x + width
+     */
+    public double getFarX() {
+        return x + width;
+    }
+
     Block(double x, double y, double width, double height) {
         this.x = x;
         this.y = y;
@@ -58,9 +76,9 @@ public class Block {
     public boolean collidesWith(Block other) {
         // Collision from https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
         // I'm not sure why but the bool is reversed
-        return !(getX() < other.getX() + other.getWidth() &&
-                getX() + getWidth() > other.getX() &&
-                getY() < other.getY() + other.getHeight() &&
-                getY() + getHeight() < other.getY());
+        return !(getX() < other.getFarX() &&
+                getFarX() > other.getX() &&
+                getY() < other.getFarY() &&
+                getFarY() < other.getY());
     }
 }
