@@ -86,11 +86,15 @@ public class Block {
 
     // These individual collision aren't ideal. TBH no idea what i'm doing lmfao
     // Main reasoning is that I want to be able to stop movement (and detect) in a specific direction.
+    // This is horrible, btw. A more efficient algorithm is left as an exercise to the CPU.
     /**
      * Does the right side of this block collide with the other's left side?
      */
     public boolean collideRight(Block other, double offset) {
-        return other.isPointInside(getFarX() + offset, getY()) || other.isPointInside(getFarX() + offset, getFarY());
+        return other.isPointInside(getFarX() + offset, getY()) ||
+               other.isPointInside(getFarX() + offset, getFarY()) ||
+               isPointInside(other.getX() - offset, other.getY()) ||
+               isPointInside(other.getX() - offset, other.getFarY());
     }
 
     public boolean collideRight(Block other) {return collideRight(other, 0);}
@@ -99,7 +103,10 @@ public class Block {
      * Does the left side of this block collide with the other's right side?
      */
     public boolean collideLeft(Block other, double offset) {
-        return other.isPointInside(getX() + offset, getY()) || other.isPointInside(getX() + offset, getFarY());
+        return other.isPointInside(getX() + offset, getY()) ||
+               other.isPointInside(getX() + offset, getFarY()) ||
+                isPointInside(other.getFarX() - offset, other.getY())||
+                isPointInside(other.getFarX() - offset, other.getFarY());
     }
 
     public boolean collideLeft(Block other) {return collideLeft(other, 0);}
@@ -109,7 +116,10 @@ public class Block {
      * Does the bottom side of this block collide with the other's top side?
      */
     public boolean collideBottom(Block other, double offset) {
-        return other.isPointInside(getX(), getFarY() + offset) || other.isPointInside(getFarX(), getFarY() + offset);
+        return other.isPointInside(getX(), getFarY() + offset) ||
+               other.isPointInside(getFarX(), getFarY() + offset) ||
+               isPointInside(other.getX(), other.getY() - offset) ||
+               isPointInside(other.getFarX(), other.getY() - offset);
     }
 
     public boolean collideBottom(Block other) {return collideBottom(other, 0);}
@@ -118,7 +128,10 @@ public class Block {
      * Does the top side of this block collide with the other's bottom side?
      */
     public boolean collideTop(Block other, double offset) {
-        return other.isPointInside(getX(), getY() + offset) || other.isPointInside(getFarX(), getY() + offset);
+        return other.isPointInside(getX(), getY() + offset) ||
+               other.isPointInside(getFarX(), getY() + offset) ||
+               isPointInside(other.getX(), getFarY() - offset) ||
+               isPointInside(other.getFarX(), getFarY() - offset);
     }
     public boolean collideTop(Block other) {return collideTop(other, 0);}
 
