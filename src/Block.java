@@ -57,7 +57,8 @@ public class Block {
 
     public boolean collidesWith(Block other) {
         // Collision from https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
-        return (getX() < other.getX() + other.getWidth() &&
+        // I'm not sure why but the bool is reversed
+        return !(getX() < other.getX() + other.getWidth() &&
                 getX() + getWidth() > other.getX() &&
                 getY() < other.getY() + other.getHeight() &&
                 getY() + getHeight() < other.getY());
