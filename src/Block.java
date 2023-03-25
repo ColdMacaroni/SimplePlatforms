@@ -75,7 +75,6 @@ public class Block {
 
     public void draw() {}
 
-
     /**
      * Checks if the given point is inside the block
      * @return If the point is inside the block.
@@ -90,28 +89,37 @@ public class Block {
     /**
      * Does the right side of this block collide with the other's left side?
      */
-    public boolean collideRight(Block other) {
-        return other.isPointInside(getFarX(), getY()) || other.isPointInside(getFarX(), getFarY());
+    public boolean collideRight(Block other, double offset) {
+        return other.isPointInside(getFarX() + offset, getY()) || other.isPointInside(getFarX() + offset, getFarY());
     }
+
+    public boolean collideRight(Block other) {return collideRight(other, 0);}
 
     /**
      * Does the left side of this block collide with the other's right side?
      */
-    public boolean collideLeft(Block other) {
-        return other.isPointInside(getX(), getY()) || other.isPointInside(getX(), getFarY());
+    public boolean collideLeft(Block other, double offset) {
+        return other.isPointInside(getX() + offset, getY()) || other.isPointInside(getX() + offset, getFarY());
     }
+
+    public boolean collideLeft(Block other) {return collideLeft(other, 0);}
+
 
     /**
      * Does the bottom side of this block collide with the other's top side?
      */
-    public boolean collideBottom(Block other) {
-        return other.isPointInside(getX(), getFarY()) || other.isPointInside(getFarX(), getFarY());
+    public boolean collideBottom(Block other, double offset) {
+        return other.isPointInside(getX(), getFarY() + offset) || other.isPointInside(getFarX(), getFarY() + offset);
     }
+
+    public boolean collideBottom(Block other) {return collideBottom(other, 0);}
 
     /**
      * Does the top side of this block collide with the other's bottom side?
      */
-    public boolean collideTop(Block other) {
-        return other.isPointInside(getX(), getY()) || other.isPointInside(getFarX(), getY());
+    public boolean collideTop(Block other, double offset) {
+        return other.isPointInside(getX(), getY() + offset) || other.isPointInside(getFarX(), getY() + offset);
     }
+    public boolean collideTop(Block other) {return collideTop(other, 0);}
+
 }
