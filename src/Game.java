@@ -1,11 +1,14 @@
-import ecs100.*;
+import java.util.ArrayList;
+
 public class Game {
     // Members ------
     private final Player player;
     private boolean done = false;
+    public ArrayList<Block> blocks;
 
     // Constructor --
-    Game() {
+    Game(ArrayList<Block> blocks) {
+        this.blocks = blocks;
         player = new Player(20, 20);
     }
 
@@ -19,7 +22,7 @@ public class Game {
 
     // Methods ------
     public void tick() {
-
+        player.tick();
     }
 
     public void handleMovement(String key) {
