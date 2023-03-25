@@ -50,7 +50,7 @@ public class Game {
             player.setCurJumps(player.getCurJumps() + 1);
             canFall = false;
         }
-        
+
         if (canFall) {
             player.setCurJumps(0);
             player.fall();
