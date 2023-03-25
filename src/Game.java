@@ -25,7 +25,7 @@ public class Game {
         player.tick();
     }
 
-    public void handleMovement(String key) {
+    public void handleInput(String key) {
 
         // We can treat it as a char for easier handling
         if (key.length() == 1) {

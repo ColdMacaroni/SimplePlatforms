@@ -6,7 +6,7 @@ import java.util.ArrayList;
 public class Main {
     public static void setupGUI(Game game) {
         UI.initialise();
-        UI.setKeyListener(game::handleMovement);
+        UI.setKeyListener(game::handleInput);
     }
 
     public static void main(String[] args) {
