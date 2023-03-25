@@ -83,8 +83,11 @@ public class Game {
             switch (k) {
                 case 'd' -> movePlayer(Direction.RIGHT);
                 case 'a' -> movePlayer(Direction.LEFT);
+                case 'w' -> movePlayer(Direction.UP);
                 case 'q' -> done = true;
             }
+        } else if (key.equals("Space")) {
+            movePlayer(Direction.UP);
         }
     }
 }
