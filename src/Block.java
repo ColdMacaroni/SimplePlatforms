@@ -78,10 +78,12 @@ public class Block {
      * @return If the point is inside the block.
      */
     public boolean isPointInside(double x, double y) {
-        return (getX() <= x && x <= getFarX() &&
-                getY() <= y && y <= getFarY());
+        return (getX() < x && x < getFarX() &&
+                getY() < y && y < getFarY());
     }
 
+    // These individual collision aren't ideal. TBH no idea what i'm doing lmfao
+    // Main reasoning is that I want to be able to stop movement (and detect) in a specific direction.
     /**
      * Does the right side of this block collide with the other's left side?
      */
