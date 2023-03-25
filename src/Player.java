@@ -10,11 +10,21 @@ public class Player extends ColorBlock {
         super(x, y, 32, 32, Color.RED);
     }
 
+
+    public void tick() {
+        move(0, 1);
+    }
+
+    private void move(double x, double y) {
+        setX(getX() + stepSize * x);
+        setY(getY() + stepSize * y);
+    }
+
     public void moveRight() {
-        setX(getX() + stepSize);
+        move(1, 0);
     }
 
     public void moveLeft() {
-        setX(getX() - stepSize);
+        move(-1, 0);
     }
 }
