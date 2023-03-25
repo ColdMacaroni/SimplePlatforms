@@ -1,5 +1,8 @@
 import ecs100.UI;
 
+import java.awt.*;
+import java.util.ArrayList;
+
 public class Main {
     public static void setupGUI(Game game) {
         UI.initialise();
@@ -7,17 +10,23 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        Game game = new Game();
+        ColorBlock platform = new ColorBlock(0, 400, 400, 20, Color.BLACK);
+
+        ArrayList<Block> blocks = new ArrayList<Block>();
+        blocks.add(platform);
+
+        Game game = new Game(blocks);
         setupGUI(game);
 
         final double frame_len = 1000.0 / 30.0;
         while (!game.getDone()) {
-            // Tick player in order to apply gravity and such
-            game.player.tick();
+            // Magic
+            game.tick();
 
             UI.clearGraphics();
 
-            game.player.draw();
+            platform.draw();
+            game.getPlayer().draw();
 
             UI.sleep(frame_len);
         }
