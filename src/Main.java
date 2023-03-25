@@ -13,11 +13,16 @@ public class Main {
     public static void main(String[] args) {
         // Create obstacles
         ArrayList<Block> blocks = new ArrayList<Block>();
-        blocks.add(new ColorBlock(100, 400, 200, 20, Color.BLACK));
-        blocks.add(new ColorBlock(200, 400 -32, 16, 32, Color.BLACK));
-        blocks.add(new ColorBlock(120, 400 - 16 - 8, 16, 16, Color.BLACK));
+        blocks.add(new ColorBlock(10, 400, 40, 20, Color.BLACK));
+        blocks.add(new ColorBlock(100, 340, 16, 8, Color.BLACK));
+        blocks.add(new ColorBlock(120, 310, 48, 16, Color.BLACK));
 
-        Game game = new Game(blocks, new double[]{200, 20});
+        blocks.add(new ColorBlock(290, 420, 50, 16, Color.BLACK));
+        blocks.add(new ColorBlock(289, 404, 8, 32, Color.BLACK));
+        blocks.add(new ColorBlock(332, 404, 8, 32, Color.BLACK));
+//        blocks.add(new ColorBlock(120, 400 - 16 - 8, 16, 16, Color.BLACK));
+
+        Game game = new Game(blocks, new double[]{5, 300});
         setupGUI(game);
 
         // Main game loop
