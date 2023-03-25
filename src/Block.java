@@ -73,12 +73,40 @@ public class Block {
         this.height = height;
     }
 
-    public boolean collidesWith(Block other) {
-        // Collision from https://developer.mozilla.org/en-US/docs/Games/Techniques/2D_collision_detection
-        // I'm not sure why but the bool is reversed
-        return !(getX() < other.getFarX() &&
-                getFarX() > other.getX() &&
-                getY() < other.getFarY() &&
-                getFarY() < other.getY());
+    /**
+     * Checks if the given point is inside the block
+     * @return If the point is inside the block.
+     */
+    public boolean isPointInside(double x, double y) {
+        return (getX() <= x && x <= getFarX() &&
+                getY() <= y && y <= getFarY());
+    }
+
+    /**
+     * Does the right side of this block collide with the other's left side?
+     */
+    public boolean collideRight(Block other) {
+        return other.isPointInside(getFarX(), getY()) || isPointInside(getFarX(), getFarY());
+    }
+
+    /**
+     * Does the left side of this block collide with the other's right side?
+     */
+    public boolean collideLeft(Block other) {
+        return other.isPointInside(getX(), getY()) || isPointInside(getX(), getFarY());
+    }
+
+    /**
+     * Does the bottom side of this block collide with the other's top side?
+     */
+    public boolean collideBottom(Block other) {
+        return other.isPointInside(getX(), getFarY()) || isPointInside(getFarX(), getFarY());
+    }
+
+    /**
+     * Does the top side of this block collide with the other's bottom side?
+     */
+    public boolean collideTop(Block other) {
+        return other.isPointInside(getX(), getY()) || isPointInside(getFarX(), getY());
     }
 }
