@@ -1,10 +1,25 @@
 import ecs100.*;
 public class Game {
-    public Player player;
+    // Members ------
+    private final Player player;
     private boolean done = false;
 
+    // Constructor --
+    Game() {
+        player = new Player(20, 20);
+    }
+
+    // Getters ------
     public boolean getDone() {
         return done;
+    }
+    public Player getPlayer() {
+        return player;
+    }
+
+    // Methods ------
+    public void tick() {
+
     }
 
     public void handleMovement(String key) {
@@ -20,9 +35,4 @@ public class Game {
             }
         }
     }
-
-    Game() {
-        player = new Player(20, 20);
-    }
-
 }
