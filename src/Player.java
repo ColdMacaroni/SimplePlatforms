@@ -5,14 +5,17 @@ import java.awt.*;
  *
  */
 public class Player extends ColorBlock {
-    private static final double stepSize = 1.5;
+    private static final double stepSize = 4;
     Player(double x, double y) {
         super(x, y, 32, 32, Color.RED);
     }
 
+    public void fall() {
+        move(0, 1.5);
+    }
 
     public void tick() {
-        move(0, 1);
+        // TODO: Sprite changes?
     }
 
     private void move(double x, double y) {
