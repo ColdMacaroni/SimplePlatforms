@@ -49,11 +49,12 @@ public class Game {
             player.moveUp();
             player.setCurJumps(player.getCurJumps() + 1);
             canFall = false;
-        } else {
-            player.setCurJumps(0);
         }
-
-        if (canFall) player.fall();
+        
+        if (canFall) {
+            player.setCurJumps(0);
+            player.fall();
+        }
 
         if (player.getFarY() > 800) resetPlayerPos();
 
