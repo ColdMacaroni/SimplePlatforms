@@ -1,3 +1,5 @@
+import ecs100.UI;
+
 import java.awt.*;
 
 /**
@@ -31,6 +33,10 @@ public class Player extends ColorBlock {
         setY(getY() + stepSize * y);
     }
 
+    public void draw() {
+        // TODO: Different sprite for each direction
+        UI.drawImage("src/player.png", getX(), getY(), getWidth(), getHeight());
+    }
 
     public void moveRight() {
         move(1, 0);
