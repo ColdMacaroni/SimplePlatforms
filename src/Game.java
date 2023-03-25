@@ -55,6 +55,8 @@ public class Game {
 
         if (canFall) player.fall();
 
+        if (player.getFarY() > 800) resetPlayerPos();
+
         player.tick();
     }
 
