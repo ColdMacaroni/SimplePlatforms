@@ -31,14 +31,28 @@ public class Game {
         player.setY(startingPos[1]);
     }
     public void tick() {
+        // Check if player is touching floor
         boolean canFall = true;
-        for (Block b: blocks) {
-            if (player.collideBottom(b) || player.collideBottom(b, Player.stepSize)) {
-                player.setY(b.getY() - player.getHeight());
-                canFall = false;
-                break;
+        if (player.getCurJumps() <= 0) {
+            for (Block b : blocks) {
+                if (player.collideBottom(b) || player.collideBottom(b, Player.stepSize)) {
+                    player.setY(b.getY() - player.getHeight());
+
+                    // Reset jump
+                    player.setCurJumps(-1);
+
+                    canFall = false;
+                    break;
+                }
             }
+        } else if (0 < player.getCurJumps() && player.getCurJumps() <= player.getMaxJumps()) {
+            player.moveUp();
+            player.setCurJumps(player.getCurJumps() + 1);
+            canFall = false;
+        } else {
+            player.setCurJumps(0);
         }
+
         if (canFall) player.fall();
 
         player.tick();
@@ -47,10 +61,15 @@ public class Game {
     private void movePlayer(Direction dir) {
         switch (dir) {
             case UP -> {
-                // TODO: Jumping
+                if (player.getCurJumps() == -1) {
+                    player.setCurJumps(1);
+                }
             }
             case DOWN -> {
-                // TODO: Useless??
+                // Cancel jump
+                if (player.getCurJumps() > 0) {
+                    player.setCurJumps(0);
+                }
             }
             case RIGHT -> {
                 for (Block b : blocks) {
@@ -81,9 +100,10 @@ public class Game {
             char k = key.charAt(0);
 
             switch (k) {
-                case 'd' -> movePlayer(Direction.RIGHT);
-                case 'a' -> movePlayer(Direction.LEFT);
                 case 'w' -> movePlayer(Direction.UP);
+                case 'a' -> movePlayer(Direction.LEFT);
+                case 's' -> movePlayer(Direction.DOWN);
+                case 'd' -> movePlayer(Direction.RIGHT);
                 case 'q' -> done = true;
             }
         } else if (key.equals("Space")) {

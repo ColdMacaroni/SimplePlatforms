@@ -14,7 +14,8 @@ public class Main {
         // Create obstacles
         ArrayList<Block> blocks = new ArrayList<Block>();
         blocks.add(new ColorBlock(100, 400, 200, 20, Color.BLACK));
-        blocks.add(new ColorBlock(200, 300, 24, 100, Color.BLACK));
+        blocks.add(new ColorBlock(200, 400 -32, 16, 32, Color.BLACK));
+        blocks.add(new ColorBlock(120, 400 - 16 - 8, 16, 16, Color.BLACK));
 
         Game game = new Game(blocks, new double[]{200, 20});
         setupGUI(game);
