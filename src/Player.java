@@ -21,7 +21,7 @@ public class Player extends ColorBlock {
     }
 
     public void fall() {
-        move(0, 1.5);
+        move(0, 1.25);
     }
 
     public void tick() {
